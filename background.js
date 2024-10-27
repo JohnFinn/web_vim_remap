@@ -41,6 +41,26 @@
   );
   browser.webRequest.onBeforeRequest.addListener(
     makeTextPatcher((s) => {
+      var textFind =
+          "const t=monacoVim.initVimMode(e,n&&n.current?n.current:void 0);",
+        textAdd =
+          "monacoVim.VimMode.Vim.noremap(';', 'l');" +
+          "monacoVim.VimMode.Vim.noremap('l', 'k');" +
+          "monacoVim.VimMode.Vim.noremap('k', 'j');" +
+          "monacoVim.VimMode.Vim.noremap('j', 'h');" +
+          "monacoVim.VimMode.Vim.noremap('h', ';');";
+      return s.replace(textFind, "$&" + textAdd);
+    }),
+    {
+      types: ["script"],
+      urls: [
+        "https://leetcode.com/_next/static/chunks/8048-f69dccd451f28f1f.js",
+      ],
+    },
+    ["blocking"],
+  );
+  browser.webRequest.onBeforeRequest.addListener(
+    makeTextPatcher((s) => {
       return s
         .replace(
           '{keys:"h",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
