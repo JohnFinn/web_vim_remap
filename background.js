@@ -31,7 +31,7 @@
     onBR,
     {
       types: ["script"],
-      urls: ["https://static.ce-cdn.net/main.v53.3050e299479d2cb0c9fa.js"],
+      urls: ["https://static.ce-cdn.net/main.v*.*.js"],
     },
     ["blocking"],
   );
