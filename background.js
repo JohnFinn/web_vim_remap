@@ -25,11 +25,11 @@
     makeTextPatcher((s) => {
       var textFind = "t.prototype.enableVim=function(){",
         textAdd =
-          "g.VimMode.Vim.noremap(';', 'l');" +
-          "g.VimMode.Vim.noremap('l', 'k');" +
-          "g.VimMode.Vim.noremap('k', 'j');" +
-          "g.VimMode.Vim.noremap('j', 'h');" +
-          "g.VimMode.Vim.noremap('h', ';');";
+          "a.VimMode.Vim.noremap(';', 'l');" +
+          "a.VimMode.Vim.noremap('l', 'k');" +
+          "a.VimMode.Vim.noremap('k', 'j');" +
+          "a.VimMode.Vim.noremap('j', 'h');" +
+          "a.VimMode.Vim.noremap('h', ';');";
 
       return s.replace(textFind, "$&" + textAdd);
     }),
