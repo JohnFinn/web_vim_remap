@@ -41,8 +41,7 @@
   );
   browser.webRequest.onBeforeRequest.addListener(
     makeTextPatcher((s) => {
-      var textFind =
-          "const t=monacoVim.initVimMode(e,n&&n.current?n.current:void 0);",
+      var textFind = "monacoVim.initVimMode(e,n&&n.current?n.current:void 0);",
         textAdd =
           "monacoVim.VimMode.Vim.noremap(';', 'l');" +
           "monacoVim.VimMode.Vim.noremap('l', 'k');" +
