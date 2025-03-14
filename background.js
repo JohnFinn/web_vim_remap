@@ -53,9 +53,7 @@
     }),
     {
       types: ["script"],
-      urls: [
-        "https://leetcode.com/_next/static/chunks/8048-f69dccd451f28f1f.js",
-      ],
+      urls: ["https://leetcode.com/_next/static/chunks/*.js"],
     },
     ["blocking"],
   );
