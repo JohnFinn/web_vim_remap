@@ -56,13 +56,15 @@ def handle_most(content):
 def response(flow: http.HTTPFlow) -> None:
     if not is_whitelisted(flow.request.pretty_url):
         return
-    new_content = (
-        handle_most(flow.response.content)
-        if not flow.request.pretty_url.startswith(LEETCODE_URL)
-        else handle_leetcode(flow.response.content)
-    )
-    log(
-        "N" if flow.response.content is new_content else "Y",
-        flow.request.pretty_url,
-    )
-    flow.response.content = new_content
+    match flow.response:
+        case http.Response():
+            new_content = (
+                handle_most(flow.response.content)
+                if not flow.request.pretty_url.startswith(LEETCODE_URL)
+                else handle_leetcode(flow.response.content)
+            )
+            log(
+                "N" if flow.response.content is new_content else "Y",
+                flow.request.pretty_url,
+            )
+            flow.response.content = new_content
