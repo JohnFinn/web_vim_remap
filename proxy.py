@@ -6,22 +6,35 @@ def log(*a, **kw):
         print(*a, **kw, file=file)
 
 
-def matches_leetcode_js(url: str) -> bool:
+LEETCODE_URL = "https://leetcode.com/_next/static/chunks/"
+
+
+def is_whitelisted(url: str) -> bool:
     return url.endswith(".js") and url.startswith(
         (
             "https://static.ce-cdn.net/",  # compiler explorer
-            "https://leetcode.com/_next/static/chunks/",  # leetcode
+            LEETCODE_URL,  # leetcode
             "https://d1a7p14oqam61r.cloudfront.net/packs/js/",  # app.coderpad.io
             "https://hrcdn.net/fcore/assets/monacovim",  # hackerrank
         )
     )
 
 
-def response(flow: http.HTTPFlow) -> None:
-    if not matches_leetcode_js(flow.request.pretty_url):
-        return
-    new_content = (
-        flow.response.content.replace(
+def handle_leetcode(content):
+    textFind = b"monacoVim.initVimMode(e,n&&n.current?n.current:void 0);"
+    textAdd = (
+        b"monacoVim.VimMode.Vim.noremap(';', 'l');"
+        + b"monacoVim.VimMode.Vim.noremap('l', 'k');"
+        + b"monacoVim.VimMode.Vim.noremap('k', 'j');"
+        + b"monacoVim.VimMode.Vim.noremap('j', 'h');"
+        + b"monacoVim.VimMode.Vim.noremap('h', ';');"
+    )
+    return content.replace(textFind, textAdd + textFind)
+
+
+def handle_most(content):
+    return (
+        content.replace(
             b'{keys:"h",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
             b'{keys:"j",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
         )
@@ -37,6 +50,16 @@ def response(flow: http.HTTPFlow) -> None:
             b'{keys:"k",type:"motion",motion:"moveByLines",motionArgs:{forward:!1,linewise:!0}}',
             b'{keys:"l",type:"motion",motion:"moveByLines",motionArgs:{forward:!1,linewise:!0}}',
         )
+    )
+
+
+def response(flow: http.HTTPFlow) -> None:
+    if not is_whitelisted(flow.request.pretty_url):
+        return
+    new_content = (
+        handle_most(flow.response.content)
+        if not flow.request.pretty_url.startswith(LEETCODE_URL)
+        else handle_leetcode(flow.response.content)
     )
     log(
         "N" if flow.response.content is new_content else "Y",
