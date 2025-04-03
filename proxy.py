@@ -18,7 +18,6 @@ def matches_leetcode_js(url: str) -> bool:
 
 
 def response(flow: http.HTTPFlow) -> None:
-    """Log URL and SHA-256 hash of the response body."""
     if not matches_leetcode_js(flow.request.pretty_url):
         return
     log("matched", flow.request.pretty_url, "replacing content")
