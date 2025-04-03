@@ -7,7 +7,14 @@ def log(*a, **kw):
 
 
 def matches_leetcode_js(url: str) -> bool:
-    return url.endswith(".js")
+    return url.endswith(".js") and url.startswith(
+        (
+            "https://static.ce-cdn.net/",  # compiler explorer
+            "https://leetcode.com/_next/static/chunks/",  # leetcode
+            "https://d1a7p14oqam61r.cloudfront.net/packs/js/",  # app.coderpad.io
+            "https://hrcdn.net/fcore/assets/monacovim",  # hackerrank
+        )
+    )
 
 
 def response(flow: http.HTTPFlow) -> None:
