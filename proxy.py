@@ -20,8 +20,7 @@ def matches_leetcode_js(url: str) -> bool:
 def response(flow: http.HTTPFlow) -> None:
     if not matches_leetcode_js(flow.request.pretty_url):
         return
-    log("matched", flow.request.pretty_url, "replacing content")
-    flow.response.content = (
+    new_content = (
         flow.response.content.replace(
             b'{keys:"h",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
             b'{keys:"j",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
@@ -39,3 +38,8 @@ def response(flow: http.HTTPFlow) -> None:
             b'{keys:"l",type:"motion",motion:"moveByLines",motionArgs:{forward:!1,linewise:!0}}',
         )
     )
+    log(
+        "N" if flow.response.content is new_content else "Y",
+        flow.request.pretty_url,
+    )
+    flow.response.content = new_content
