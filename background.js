@@ -104,7 +104,7 @@
     }),
     {
       types: ["script"],
-      urls: ["https://hrcdn.net/fcore/assets/monacovim-4f9bc0dc.js"],
+      urls: ["https://hrcdn.net/*monacovim*.js"],
     },
     ["blocking"],
   );

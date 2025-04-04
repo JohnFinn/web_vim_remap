@@ -15,7 +15,7 @@ def is_whitelisted(url: str) -> bool:
             "https://static.ce-cdn.net/",  # compiler explorer
             LEETCODE_URL,  # leetcode
             "https://d1a7p14oqam61r.cloudfront.net/packs/js/",  # app.coderpad.io
-            "https://hrcdn.net/fcore/assets/monacovim",  # hackerrank
+            "https://hrcdn.net/",  # hackerrank
         )
     )
 
