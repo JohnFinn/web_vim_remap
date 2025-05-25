@@ -13,17 +13,13 @@
     };
     packages.${system}.firefox_extension =
       # copy-pasted and modified from https://github.com/nix-community/nur-combined/blob/87ffa62e85cd000fdd2cb0e5ef9d5a9cf3c2eef4/repos/rycee/pkgs/firefox-addons/default.nix#L5-L25
-      {
-        stdenv,
-        fetchFromGitHub,
-        web-ext,
-      }: let
+      let
         addonId = "hackce@nanigashi.stackoverflow";
       in
-        stdenv.mkDerivation {
+        pkgs.stdenv.mkDerivation {
           name = "hackce-0.1";
 
-          src = fetchFromGitHub {
+          src = pkgs.fetchFromGitHub {
             owner = "JohnFinn";
             repo = "web_vim_remap";
             rev = "2018d5ab83963b4cff6aaf7a1b8eae807004ad68";
@@ -35,7 +31,7 @@
 
           passthru = {inherit addonId;};
 
-          nativeBuildInputs = [web-ext];
+          nativeBuildInputs = [pkgs.web-ext];
 
           buildCommand = ''
             web-ext build --source-dir "$src"
