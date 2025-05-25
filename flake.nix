@@ -11,5 +11,6 @@
     devShells.${system}.default = pkgs.mkShell.override {stdenv = pkgs.clangStdenv;} {
       inherit nativeBuildInputs;
     };
+    packages.${system}.firefox_extension = 3.14;
   };
 }
