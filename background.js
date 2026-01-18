@@ -104,7 +104,7 @@
     }),
     {
       types: ["script"],
-      urls: ["https://hrcdn.net/*monacovim*.js", "https://cdn.hackerearth.com/*js"],
+      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js"],
     },
     ["blocking"],
   );
