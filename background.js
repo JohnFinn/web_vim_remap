@@ -78,33 +78,7 @@
     }),
     {
       types: ["script"],
-      urls: ["https://d1a7p14oqam61r.cloudfront.net/packs/js/*.js"],
-    },
-    ["blocking"],
-  );
-  browser.webRequest.onBeforeRequest.addListener(
-    makeTextPatcher((s) => {
-      return s
-        .replace(
-          '{keys:"h",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
-          '{keys:"j",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!1}}',
-        )
-        .replace(
-          '{keys:"l",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!0}}',
-          '{keys:";",type:"motion",motion:"moveByCharacters",motionArgs:{forward:!0}}',
-        )
-        .replace(
-          '{keys:"j",type:"motion",motion:"moveByLines",motionArgs:{forward:!0,linewise:!0}}',
-          '{keys:"k",type:"motion",motion:"moveByLines",motionArgs:{forward:!0,linewise:!0}}',
-        )
-        .replace(
-          '{keys:"k",type:"motion",motion:"moveByLines",motionArgs:{forward:!1,linewise:!0}}',
-          '{keys:"l",type:"motion",motion:"moveByLines",motionArgs:{forward:!1,linewise:!0}}',
-        );
-    }),
-    {
-      types: ["script"],
-      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js", "https://neetcode.io/*.js"],
+      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js", "https://neetcode.io/*.js", "https://d1a7p14oqam61r.cloudfront.net/packs/js/*.js"],
     },
     ["blocking"],
   );
