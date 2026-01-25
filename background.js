@@ -104,7 +104,7 @@
     }),
     {
       types: ["script"],
-      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js"],
+      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js", "https://neetcode.io/*.js"],
     },
     ["blocking"],
   );
