@@ -78,7 +78,7 @@
     }),
     {
       types: ["script"],
-      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js", "https://neetcode.io/*.js", "https://d1a7p14oqam61r.cloudfront.net/packs/js/*.js"],
+      urls: ["https://hrcdn.net/*.js", "https://cdn.hackerearth.com/*.js", "https://neetcode.io/*.js", "https://d1a7p14oqam61r.cloudfront.net/*.js"],
     },
     ["blocking"],
   );
